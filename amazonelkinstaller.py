@@ -22,33 +22,33 @@ cd ~
 wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u73-b02/jdk-8u73-linux-x64.rpm"
 yum -y localinstall jdk-8u73-linux-x64.rpm
 rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
-#create new repo for elasticsearch
-wget -O /etc/yum.repos.d/ 'https://github.com/lanerjo/aws_ELK_stack_launcher/blob/master/elasticsearch.repo' #edit me with the github repo file 
+#create new repo for elasticsearch rawgit.com to create a downloadable link to get the file needed
+wget "https://cdn.rawgit.com/lanerjo/aws_ELK_stack_launcher/master/elasticsearch.repo" -P /etc/yum.repos.d/ #edit me with the github repo file 
 
 #install elastic search
 yum -y install elasticsearch
 #edit elasticsearch config
 sed -i '$network.host: localhost' /etc/elasticsearch/elasticsearch.yml 
 
-service start elasticsearch
+service elasticsearch start
 service enable elasticsearch
 #kibana
-#add kibana repo
-wget -O /etc/yum.repos.d/ 'https://github.com/lanerjo/aws_ELK_stack_launcher/blob/master/kibana.repo' #edit me with the github repo file 
+#add kibana repo used rawgit.com to create a downloadable link to get the file needed
+wget 'https://cdn.rawgit.com/lanerjo/aws_ELK_stack_launcher/master/kibana.repo' -P /etc/yum.repos.d/ #edit me with the github repo file 
 #install kibana
 yum -y install kibana
 #edit kibana config
 sed -i '$server.host: "localhost"' /opt/kibana/config/
 
 #start kibana
-service start kibana
+service kibana start
 #install logstash
 
 #add logstash repo
-wget -O /etc/yum.repos.d/ 'https://github.com/lanerjo/aws_ELK_stack_launcher/blob/master/logstash.repo' #edit me with the github repo file 
+wget 'https://cdn.rawgit.com/lanerjo/aws_ELK_stack_launcher/master/logstash.repo' -P /etc/yum.repos.d/ #edit me with the github repo file 
 #install logstash
 yum -y install logstash
-service start logstash
+service logstash start
 """
 
 #creating the ec2 instance on AWS using a predefined security group, t2 micro size, and amazon linux machine image
