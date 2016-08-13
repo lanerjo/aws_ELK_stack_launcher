@@ -23,7 +23,7 @@ wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2F
 yum -y localinstall jdk-8u73-linux-x64.rpm
 rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
 #create new repo for elasticsearch
-wget -O /etc/yum.repos.d 'https://github.com/lanerjo/aws_ELK_stack_launcher/blob/master/elasticsearch.repo' #edit me with the github repo file 
+wget -O /etc/yum.repos.d/ 'https://github.com/lanerjo/aws_ELK_stack_launcher/blob/master/elasticsearch.repo' #edit me with the github repo file 
 
 #install elastic search
 yum -y install elasticsearch
@@ -34,7 +34,7 @@ service start elasticsearch
 service enable elasticsearch
 #kibana
 #add kibana repo
-wget -O /etc/yum.repos.d 'https://github.com/lanerjo/aws_ELK_stack_launcher/blob/master/kibana.repo' #edit me with the github repo file 
+wget -O /etc/yum.repos.d/ 'https://github.com/lanerjo/aws_ELK_stack_launcher/blob/master/kibana.repo' #edit me with the github repo file 
 #install kibana
 yum -y install kibana
 #edit kibana config
@@ -45,7 +45,7 @@ service start kibana
 #install logstash
 
 #add logstash repo
-wget -O /etc/yum.repos.d 'https://github.com/lanerjo/aws_ELK_stack_launcher/blob/master/logstash.repo' #edit me with the github repo file 
+wget -O /etc/yum.repos.d/ 'https://github.com/lanerjo/aws_ELK_stack_launcher/blob/master/logstash.repo' #edit me with the github repo file 
 #install logstash
 yum -y install logstash
 service start logstash
@@ -60,7 +60,7 @@ instances = ec2.create_instances(
     MinCount=1,
     MaxCount=1,
     SecurityGroupIds=['Jenkins'],
-    UserData=userdata
+    UserData=userdata,
 )
 
 #start the instance and print to command instance id, state, public dns, public ip
